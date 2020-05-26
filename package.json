@@ -1,0 +1,11 @@
+{
+  "name": "classic-kill-bot",
+  "version": "1.0.0",
+  "description": "A classic wow kill reporting discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chad Pjontek",
+  "license": "MIT"
+}
