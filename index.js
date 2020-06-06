@@ -26,13 +26,14 @@ const createKill = async (message, kill) => {
   console.log('trying to create kill...')
   try {
     // create canvas for kill report
-    const { tod, spellName, posX, posY, mapName, mapUrl, damage, killerName, victimName } = kill
+    const { tod, spellName, posX, posY, mapName, mapParentUrl, damage, killerName, victimName } = kill
     const canvas = Canvas.createCanvas(320, 320)
     const ctx = canvas.getContext('2d')
     
     // draw map
-    const background = await Canvas.loadImage(mapUrl)
-    ctx.drawImage(background,0, 0, background.width, background.height, 0, 106, canvas.width, canvas.height/1.5)
+    const background = await Canvas.loadImage(mapParentUrl)
+    const TOP_OFFSET = 106
+    ctx.drawImage(background,0, 0, background.width, background.height, 0, TOP_OFFSET, canvas.width, canvas.height/1.5)
     
     // draw kill text
     const who = `${killerName} kills ${victimName}`
@@ -52,13 +53,14 @@ const createKill = async (message, kill) => {
     ctx.fillText(where, 5, 82)
     ctx.fillText(when, 5, 99)
 
-    // draw kill location
-    const x = (posX/200 + 50).toFixed(1)
-    const y = (posY/200 * -1 + 50).toFixed(1)
-    const cX = Math.floor(canvas.width * x / 100)
-    const cY = Math.floor(canvas.height / 1.5 * y / 100) + 106
+    // draw kill point
+    const LEFT_POSX_OFFSET = 54
+    const CENTER_OFFSET = 106
+    const GRAPH_TO_MAP_RATIO = -94.34
+    const x = Math.floor(LEFT_POSX_OFFSET + CENTER_OFFSET + (posX / GRAPH_TO_MAP_RATIO))
+    const y = Math.floor(TOP_OFFSET + CENTER_OFFSET + (posY / GRAPH_TO_MAP_RATIO))
     ctx.beginPath()
-    ctx.arc(cX , cY, 3, 0, 2 * Math.PI, false)
+    ctx.arc(x , y, 3, 0, 2 * Math.PI, false)
     ctx.closePath()
     ctx.fillStyle = '#f00'
     ctx.fill()
@@ -115,7 +117,8 @@ const fetchKillReport = async (message) => {
         kill.tod = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'medium' }).format(new Date(timeOfDeath))
         // get the map info
         const map = mapIds.find(e => e.mapId == mapId)
-        kill.mapUrl = map.url
+        // kill.mapUrl = map.url
+        kill.mapParentUrl = map.parentUrl
         kill.mapName = map.name
         // try to creaet kill
         createKill(message, kill)
