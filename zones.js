@@ -54,12 +54,14 @@ const zones = [
   {
     'name': 'Kalimdor',
     'mapId': 1414,
-    'url': 'https://wow.zamimg.com/images/wow/classic/maps/enus/zoom/-6.jpg?33598'
+    'url': 'https://wow.zamimg.com/images/wow/classic/maps/enus/zoom/-6.jpg?33598',
+    'continent': 'KA'
   },
   {
     'name': 'Eastern Kingdoms',
     'mapId': 1415,
-    'url': 'https://wow.zamimg.com/images/wow/classic/maps/enus/zoom/-3.jpg?33598'
+    'url': 'https://wow.zamimg.com/images/wow/classic/maps/enus/zoom/-3.jpg?33598',
+    'continent': 'EK'
   },
   {
     'name': 'Alterac Mountains',
@@ -345,12 +347,14 @@ const zones = [
   {
     'name': 'Eastern Kingdoms',
     'mapId': 1463,
-    'url': 'https://wow.zamimg.com/images/wow/classic/maps/enus/zoom/-3.jpg?33598'
+    'url': 'https://wow.zamimg.com/images/wow/classic/maps/enus/zoom/-3.jpg?33598',
+    'continent': 'EK'
   },
   {
     'name': 'Kalimdor',
     'mapId': 1464,
-    'url': 'https://wow.zamimg.com/images/wow/classic/maps/enus/zoom/-6.jpg?33598'
+    'url': 'https://wow.zamimg.com/images/wow/classic/maps/enus/zoom/-6.jpg?33598',
+    'continent': 'KA'
   }
 ]
 
