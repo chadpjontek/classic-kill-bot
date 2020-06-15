@@ -1,10 +1,13 @@
 const Discord = require('discord.js')
 const fetch = require('node-fetch')
 const Canvas = require('canvas')
-const { prefix,token } = require('./config.json')
 const { continents, zones } = require('./zones')
 const avatars = require('./avatars')
 const client = new Discord.Client()
+const prefix = '!'
+
+// Enviroment vars for local dev
+require('dotenv').config()
 
 // start client bot
 client.once('ready', () => {
@@ -163,4 +166,4 @@ client.on('message', message => {
 })
 
 // authenticate with discord
-client.login(token)
+client.login(process.env.TOKEN)
